@@ -1,0 +1,662 @@
+int tamanho;
+int timerStart;
+int timerValue;
+int clickCount = 0;
+int counter = 11000;
+boolean interruptor = false;
+boolean endGame = false;
+boolean fase1 = false;
+boolean fase2 = false;
+boolean fase3 = false;
+boolean fase4 = false;
+boolean fase5 = false;
+boolean fase6 = false;
+boolean fase7 = false;
+boolean fase8 = false;
+boolean telaVermelha = false;
+boolean vitoria = false;
+PImage img1;
+PImage img2;
+PImage img3;
+PImage img4;
+PImage img5;
+PImage img6;
+PImage img7;
+PImage img8;
+PFont minhaFonte;
+
+
+//CONFIGURACOES
+void setup () {
+  size (600, 600);
+  img1 = loadImage("level1.png");
+  img2 = loadImage("level2.png");
+  img3 = loadImage("level3.png");
+  img4 = loadImage("level4.png");
+  img5 = loadImage("level5.png");
+  img6 = loadImage("level6.png");
+  img7 = loadImage("level7.png");
+  img8 = loadImage("level8.png");
+  minhaFonte = createFont("NoirPro-Regular.otf", 32);
+}
+
+//RENDERIZAR
+void draw () {
+
+  //Tela Inicio (Branco)
+  background(255);
+      textFont(minhaFonte);
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text("Aperte para Iniciar", width/2, 300);
+  
+  
+  //Timer no console
+  println("Timer value: " + timerValue);
+
+
+
+  //INICIADO O JOGO:
+  if (fase1) {
+    background(255);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+
+
+    //Desenhar cenario 1:
+    pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img1, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+    //Desenhar tempo na tela
+    textFont(minhaFonte);
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 8;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 10;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  //GAME - FIM
+  if (telaVermelha==true) {
+    background(255, 0, 0);
+    textFont(minhaFonte);
+    textSize(32);
+    textAlign(CENTER);
+    fill(255);
+    text("Game Over", width/2, 310);
+  }
+
+  //Click + 10 seg = Tela Vermelha (Perdeu na fase1)
+  if  (fase1 == true && timerValue>10000  &&  clickCount>=1) {
+    fase1 = false;
+    telaVermelha = true;
+  }
+
+  //Click + 10 seg = Tela Vermelha (derrota fase2)
+  if  (fase2 == true && timerValue>10000  &&  clickCount>=1) {
+    fase2 = false;
+    telaVermelha = true;
+  }
+
+  //Click + 10 seg = Tela Vermelha (derrota fase3)
+  if  (fase3 == true && timerValue>10000  &&  clickCount>=2) {
+    fase3 = false;
+    telaVermelha = true;
+  }
+
+  //Click + 10 seg = Tela Vermelha (derrota fase4)
+  if  (fase4 == true && timerValue>10000  &&  clickCount>=3) {
+    fase4 = false;
+    telaVermelha = true;
+  }
+  
+    //Click + 10 seg = Tela Vermelha (derrota fase4)
+  if  (fase5 == true && timerValue>10000  &&  clickCount>=4) {
+    fase5 = false;
+    telaVermelha = true;
+  }
+  
+      //Click + 10 seg = Tela Vermelha (derrota fase4)
+  if  (fase6 == true && timerValue>10000  &&  clickCount>=5) {
+    fase6 = false;
+    telaVermelha = true;
+  }
+  
+        //Click + 10 seg = Tela Vermelha (derrota fase4)
+  if  (fase7 == true && timerValue>10000  &&  clickCount>=6) {
+    fase7 = false;
+    telaVermelha = true;
+  }
+  
+          //Click + 10 seg = Tela Vermelha (derrota fase4)
+  if  (fase8 == true && timerValue>10000  &&  clickCount>=7) {
+    fase8 = false;
+    telaVermelha = true;
+  }
+
+
+  //fase 2
+  if (fase2) {
+    background(255);
+    
+    fase1 = false;
+    
+    
+       //Iniciar timer
+    timerValue = millis() - timerStart;
+    
+    
+                //desenhar cenario 2:
+    pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img2, 0, 0);
+    popMatrix();
+    
+    
+    
+    
+                //Desenhar Elipse
+                noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+    
+
+    
+    
+    
+    
+
+    
+    
+
+    
+    
+    
+    
+     
+    
+    
+        //Tempo na tela
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+    
+    
+    
+
+    
+
+
+
+
+
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+
+    
+    
+
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 8;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 10;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  //fase 3
+  if (fase3) {
+    fase2 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+    //desenhar cenario 3:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img3, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 10;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 4;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  //fase 4
+  if (fase4) {
+    fase3 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(24);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 308);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+    //desenhar cenario 4:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img4, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 8;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 6;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  //fase 5
+  if (fase5) {
+    fase4 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+    //desenhar cenario 5:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img5, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 22;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 22;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  //fase 6
+  if (fase6) {
+    fase5 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(24);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 308);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+
+    //desenhar cenario 6:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img6, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 1;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 20;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+  
+  //fase 7
+  if (fase7) {
+    fase6 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+    //desenhar cenario 7:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img7, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 2;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 50;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+  
+  //fase 8
+  if (fase8) {
+    fase7 = false;
+    background(255);
+
+    //Tempo na tela
+    textSize(32);
+    textAlign(CENTER);
+    fill(0);
+    text((counter - timerValue) / 1000, width/2, 310);
+
+    //Iniciar timer
+    timerValue = millis() - timerStart;
+
+    //Timer no console
+    println("Timer value: " + timerValue);
+
+    //desenhar cenario 8:
+   pushMatrix();
+    translate(width/2, height/2);
+    rotate(radians ( timerValue * 0.015 ) );
+    imageMode(CENTER);
+    image(img8, 0, 0);
+    popMatrix();
+
+    //Desenhar Elipse
+    noFill();
+    stroke(255, 0, 0);
+    ellipse  (300, 300, tamanho, tamanho);
+
+
+    //Atenção
+    //Interruptor desligado, elipse aumenta
+    if (interruptor == false) {
+      tamanho = tamanho + 1000;
+    }
+    //Interruptor ligado, elipse diminui !
+    else {
+      tamanho = tamanho - 10;
+    }
+
+
+    //Atenção
+    //Tamanho maior que 600, interruptor liga
+    if (tamanho > 600) {
+      interruptor = true;
+    }
+    //Tamanho menor que 0, interruptor desliga
+    if (tamanho < 0) {
+      interruptor = false;
+    }
+  }
+
+  if (vitoria == true) {
+    background(0, 180, 0);
+    textFont(minhaFonte);
+    textSize(32);
+    textAlign(CENTER);
+    fill(255);
+    text("Parabéns", width/2, 310);
+  }
+}
+// RENDERIZACAO - FIM
+
+
+//CONTROLES
+void keyPressed () {
+
+  //Click - Atualiza qtd de clicks
+  clickCount++;
+
+  //Click - Jogo nao iniciado, iniciar
+  if (clickCount < 2) {
+    fase1 = true;
+    timerStart = millis();
+  }
+
+  //Click - Vitoria (para o cenário 1) = ir para cenário 2
+  if (fase1 == true && clickCount >=1 && tamanho > 200 && tamanho< 300 && timerValue < 10000) {
+    fase1 = false;
+    fase2 = true;
+    timerStart = millis();
+  }
+  //tela de vitória (por enquanto cenário 2)
+  if (fase2 == true && clickCount >=2 && tamanho > 100 && tamanho< 200 && timerValue < 10000) {
+    fase1 = false;
+    fase2 = false;
+    fase3 = true;
+    timerStart = millis();
+  }
+  //tela de vitória (por enquanto cenário 3)
+  if (fase3 == true && clickCount >=3 && tamanho > 350 && tamanho< 400 && timerValue < 10000) {
+    fase1 = false;
+    fase2 = false;
+    fase3 = false;
+    fase4 = true;
+    timerStart = millis();
+  }
+  //tela de vitória (por enquanto cenário 4)
+  if (fase4 == true && clickCount >=4 && tamanho > 45 && tamanho< 70 && timerValue < 10000) {
+        fase1 = false;
+    fase2 = false;
+    fase3 = false;
+    fase4 = false;
+    fase5 = true;
+    timerStart = millis();
+  }
+  //tela de vitória (por enquanto cenário 5)
+  if (fase5 == true && clickCount >=5 && tamanho > 450 && tamanho< 550 && timerValue < 10000) {
+         fase1 = false;
+    fase2 = false;
+    fase3 = false;
+    fase4 = false;
+    fase5 = false;
+    fase6 = true;
+    timerStart = millis();
+  }
+  //tela de vitória (por enquanto cenário 6)
+  if (fase6 == true && clickCount >=6 && tamanho > 35 && tamanho< 85 && timerValue < 10000) {
+    fase6 = false;
+    fase7 = true;
+    timerStart = millis();
+  }
+    //tela de vitória (por enquanto cenário 7)
+  if (fase7 == true && clickCount >=7 && tamanho > 530 && tamanho< 550 && timerValue < 10000) {
+    fase7 = false;
+    fase8 = true;
+    timerStart = millis();
+  }
+      //tela de vitória (por enquanto cenário 7)
+  if (fase8 == true && clickCount >=8 && tamanho > 350 && tamanho< 400 && timerValue < 10000) {
+    vitoria = true;
+    fase8 = false;
+  }
+}
